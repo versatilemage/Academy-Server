@@ -12,6 +12,7 @@ import { detailpage } from "../Controllers/DetailPage/DetailPage.js";
 import { detail } from "../Controllers/DetailPage/Detail.js";
 import { listofPrograms } from "../Controllers/listOf.js";
 import { getExcelofEducation } from "../Controllers/readEducation.js";
+import { uploadContent, getContent } from "../Controllers/Content/Content.js";
 import {
   getUniversities,
   postUniversities,
@@ -147,5 +148,8 @@ Route.delete("/delete-school/:SlNo", DeleteSchool);
 Route.delete("/delete-collage/:SNo", DeleteCollage);
 Route.delete("/delete-event/:eventId", deleteEvent);
 Route.get("/search", searchData) ;
+
+Route.post("/add-content", uploadContent);
+Route.get("/get-content", getContent);
 
 export default Route;
