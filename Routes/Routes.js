@@ -12,7 +12,7 @@ import { detailpage } from "../Controllers/DetailPage/DetailPage.js";
 import { detail } from "../Controllers/DetailPage/Detail.js";
 import { listofPrograms } from "../Controllers/listOf.js";
 import { getExcelofEducation } from "../Controllers/readEducation.js";
-import { uploadContent, getContent } from "../Controllers/Content/Content.js";
+import { uploadContent, getContent, getContentBySubject } from "../Controllers/Content/Content.js";
 import {
   getUniversities,
   postUniversities,
@@ -23,8 +23,8 @@ import {
 } from "../Controllers/Programme/programme.controller.js";
 import { EventById } from "../Controllers/Events/getEventById.js";
 import { editEvent } from "../Controllers/Events/EditEvents.js";
-import { addQuiz } from "../Controllers/quizupload.js";
-import { quizData } from "../Controllers/quizData.js";
+import { addQuiz, addQuizbyXlsx } from "../Controllers/quizupload.js";
+import { quizData, filteredQuiz } from "../Controllers/quizData.js";
 import { createUser } from "../Controllers/userSignup.js";
 import { getuserimg } from "../Controllers/getuserimg.js";
 import { editUniversities } from "../Controllers/EditUniversities.js";
@@ -44,6 +44,7 @@ import { getSelectedUniversity } from "../Controllers/Universities/universities.
 import getSelectedCollege from "../Controllers/collage/FindOneCollege.js";
 import getSelectedSchool from "../Controllers/findSelectedSchool.js";
 import {deleteEvent} from "../Controllers/Events/deleteEvents.js";
+import { submitResult, getResults } from "../Controllers/results.js";
 
 const Storages = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -131,7 +132,12 @@ Route.get("/getselectedcollege", getSelectedCollege);
 Route.get("/getselectedschool", getSelectedSchool);
 Route.get("/event/:id", EventById);
 Route.put("/editevent",eventImgUpload.single("eventImage"), editEvent);
+
 Route.post("/addquiz",addQuiz);
+Route.post("/addquizbyfile",addQuizbyXlsx);
+
+Route.get("/getfilteredquiz",filteredQuiz);
+
 Route.post("/addschool",AddSchoolData);
 Route.get("/getschool", GetSchoolData);
 Route.get("/getcollage", getCollage)
@@ -151,5 +157,9 @@ Route.get("/search", searchData) ;
 
 Route.post("/add-content", uploadContent);
 Route.get("/get-content", getContent);
+Route.get("/get-contentsubject", getContentBySubject);
+
+Route.post("/postResults", submitResult);
+Route.get("/getResults", getResults);
 
 export default Route;

@@ -41,3 +41,24 @@ export const getContent = (req, res) => {
         }
     })
 }
+
+export const getContentBySubject = (req, res) => {
+    contentDetailsSchema.find({subject: req.query.subject}, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            if (data.length) {
+                return res.send ({
+                    status: 200,
+                    message: "Content found",
+                    data: data
+                });
+            } else {
+                return res.send ({
+                    status: 404,
+                    message: "content not found"
+                })
+            }
+        }
+    })
+}

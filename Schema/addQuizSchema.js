@@ -45,7 +45,10 @@ const addQuizSchema = new mongoose.Schema({
   },
   EntranceCode: {
       type: String
-  }
+  },
+  Subdomain: {
+    type: String
+  },
   },
   { timestamps: true }
 );
