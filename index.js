@@ -11,7 +11,7 @@ const app = Express();
 
 const PORT = process.env.PORT || 8001;
 
-app.use(cors({ credentials: true, origin:"https://learnplusplus-six.vercel.app"}));
+app.use(cors({ credentials: true, origin:"https://learnplusplus-blush.vercel.app"}));
 //http://localhost:3000, https://learnplusplus.vercel.app
 
 app.use(bodyParser.json({limit: '50mb'}));
