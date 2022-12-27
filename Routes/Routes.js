@@ -13,6 +13,7 @@ import { detail } from "../Controllers/DetailPage/Detail.js";
 import { listofPrograms } from "../Controllers/listOf.js";
 import { getExcelofEducation } from "../Controllers/readEducation.js";
 import { uploadContent, getContent, getContentBySubject } from "../Controllers/Content/Content.js";
+import { postEntranceExams, getEntranceExamsByType, getEntranceExamsBySubType } from "../Controllers/entranceExam.js";
 import {
   getUniversities,
   postUniversities,
@@ -161,5 +162,10 @@ Route.get("/get-contentsubject", getContentBySubject);
 
 Route.post("/postResults", submitResult);
 Route.get("/getResults", getResults);
+
+Route.post("/post-entrance", postEntranceExams)
+Route.get("/get-EntranceType", getEntranceExamsByType);
+Route.get("/get-EntranceSubType", getEntranceExamsBySubType);
+
 
 export default Route;
