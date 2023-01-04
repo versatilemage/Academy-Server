@@ -15,7 +15,19 @@ const entranceExamSchema = new mongoose.Schema({
     },
     examLink: {
         type: String
-    }
+    },
+    examName: {
+        type: String
+    },
+    endDate: {
+        type: String
+    },
+    dateofExam: {
+        type: String
+    },
+    examFee: {
+        type: Number
+    },
 })
 
 export const EntranceModel = new mongoose.model("AddEntrance", entranceExamSchema)

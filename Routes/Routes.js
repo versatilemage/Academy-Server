@@ -13,7 +13,7 @@ import { detail } from "../Controllers/DetailPage/Detail.js";
 import { listofPrograms } from "../Controllers/listOf.js";
 import { getExcelofEducation } from "../Controllers/readEducation.js";
 import { uploadContent, getContent, getContentBySubject } from "../Controllers/Content/Content.js";
-import { postEntranceExams, getEntranceExamsByType, getEntranceExamsBySubType } from "../Controllers/entranceExam.js";
+import { postEntranceExams, getEntranceExamsByType, getEntranceExamsBySubType, getEntranceExamsByStateExam } from "../Controllers/entranceExam.js";
 import {
   getUniversities,
   postUniversities,
@@ -46,6 +46,7 @@ import getSelectedCollege from "../Controllers/collage/FindOneCollege.js";
 import getSelectedSchool from "../Controllers/findSelectedSchool.js";
 import {deleteEvent} from "../Controllers/Events/deleteEvents.js";
 import { submitResult, getResults } from "../Controllers/results.js";
+import { addAdvertisements, getAdvertisemnts, editAdvertisements, deletAdvertisements } from "../Controllers/advertisements.js";
 
 const Storages = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -108,6 +109,20 @@ const QuizImg = multer({
   storage: Quizimage,
 });
 
+const AdvertisementImage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "AdImages")
+  },
+
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  }
+});
+
+const advertisementMulter = multer({
+  storage: AdvertisementImage
+});
+
 const Route = express.Router();
 
 Route.post("/signup", signup);
@@ -163,9 +178,14 @@ Route.get("/get-contentsubject", getContentBySubject);
 Route.post("/postResults", submitResult);
 Route.get("/getResults", getResults);
 
-Route.post("/post-entrance", postEntranceExams)
+Route.post("/post-entrance", postEntranceExams);
 Route.get("/get-EntranceType", getEntranceExamsByType);
 Route.get("/get-EntranceSubType", getEntranceExamsBySubType);
+Route.get("/get-EntranceStateExams", getEntranceExamsByStateExam);
 
+Route.post("/post-advertisement", advertisementMulter.single("adImage"), addAdvertisements);
+Route.get("/get-advertisement", getAdvertisemnts);
+Route.put("/editadvertisement", editAdvertisements);
+Route.delete("/delete-advertisement/:advertisementID", deletAdvertisements);
 
 export default Route;
